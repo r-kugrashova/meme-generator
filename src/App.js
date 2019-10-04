@@ -1,6 +1,8 @@
-import React from 'react'
-import Header from './Components/Header'
-import MemeGenerator from './Components/MemeGenerator'
+import React from 'react';
+
+import Header from './Components/Header';
+import MemeGenerator from './Components/MemeGenerator';
+
 
 function App() {
   return(

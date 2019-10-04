@@ -1,5 +1,7 @@
-import React, {Component} from 'react'
-import Canvas from './Canvas'
+import React, {Component} from 'react';
+
+import Canvas from './Canvas';
+
 
 class MemeGenerator extends Component {
     constructor(){
@@ -9,9 +11,9 @@ class MemeGenerator extends Component {
             topTextSave:"",
             bottomText:"",
             bottomTextSave:"",
-            imgSrc: null
-
-    }}
+            imgSrc: null,
+        }
+    }
 
     componentDidMount() {
         fetch("https://picsum.photos/v2/list")
@@ -22,15 +24,16 @@ class MemeGenerator extends Component {
                 rand = Math.floor(rand);
                 const mass = memes[rand];
                 if(mass){
-                this.setState({
+                    this.setState({
                     imgSrc: mass.download_url
-                })}
+                    })
+                }
                 else{
                     this.refreshPage();
                 }
-            })
-        this.handleKeyDown=this.handleKeyDown.bind(this)
-        this.refreshPage=this.refreshPage.bind(this)
+            });
+        this.handleKeyDown=this.handleKeyDown.bind(this);
+        this.refreshPage=this.refreshPage.bind(this);
     }
 
     handleKeyDown(event){
@@ -38,7 +41,7 @@ class MemeGenerator extends Component {
             this.setState({
                 [event.target.name]:event.target.value
             });
-            event.target.value = ''
+            event.target.value = '';
         }
     }
 
@@ -47,20 +50,29 @@ class MemeGenerator extends Component {
     }
 
     render() {
-
         return(
             <div className="meme">
                 <div className="meme-form">
-                    <input type="text" name="topText" onKeyDown={this.handleKeyDown}/>
-                    <input type="text" name="bottomText" onKeyDown={this.handleKeyDown}/>
+                    <input
+                        type="text"
+                        name="topText"
+                        onKeyDown={this.handleKeyDown}
+                    />
+                    <input
+                        type="text"
+                        name="bottomText"
+                        onKeyDown={this.handleKeyDown}
+                    />
                     <button onClick={this.refreshPage}>NewPic!</button>
                 </div>
-                <p style={
-                    {lineHeight: "1.5",
-                    color: "#24292e",
-                    textAlign: "center"}}>Press enter to send text to picture!</p>
-                <Canvas text1={this.state.topText} text2={this.state.bottomText} backImg={this.state.imgSrc}/>
-
+                <p style={{lineHeight: "1.5", color: "#24292e", textAlign: "center"}}>
+                    Press enter to send text to picture!
+                </p>
+                <Canvas
+                    text1={this.state.topText}
+                    text2={this.state.bottomText}
+                    backImg={this.state.imgSrc}
+                />
             </div>
         )
     }

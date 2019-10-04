@@ -1,11 +1,12 @@
 import React from "react";
-import './Canvas.css'
+
+import './Canvas.css';
+
 
 class Canvas extends React.Component {
 
     componentDidMount() {
         this.drawText=this.drawText.bind(this)
-
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -13,7 +14,8 @@ class Canvas extends React.Component {
             this.img = new Image();
             this.img.src = nextProps.backImg;
             this.img.onload = this.drawText;
-        }}
+        }
+    }
 
     drawText = () => {
         const canvas = this.refs.canvas;
@@ -31,7 +33,7 @@ class Canvas extends React.Component {
         return (
             <div>
                 <canvas className="canCan" ref="canvas"/>
-                </div>
+            </div>
         );
     }
 }
